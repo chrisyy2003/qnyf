@@ -68,8 +68,19 @@ class QNDK():
         self.USRLOC = USRLOC
         self.USRID = self.getid()
 
-    def send(self, _url, _jsonusr):
+    def sendpost(self, _url, _jsonusr):
         r = requests.post(_url, headers=self.getheader(), json=_jsonusr).json()
+        if r['code'] == 200:
+            if 'data' in r:
+                return r['data']
+        elif r['code'] == 400:
+            msg = r['info']
+            raise Exception(msg)
+        else:
+            raise Exception("Status Code Error")
+
+    def sendget(self, _url, _params):
+        r = requests.get(_url, headers=self.getheader(), params=_params).json()
         if r['code'] == 200:
             if 'data' in r:
                 return r['data']
@@ -89,8 +100,7 @@ class QNDK():
             'PassWord': pwd,
         }
         _url = 'https://yqfkapi.zhxy.net/api/User/CheckUser'
-        r = self.send(_url, jsonusr)
-        return r['ID']
+        return self.sendpost(_url, jsonusr)['ID']
 
     def getheader(self):
         random_str = ['154G8M6ASHE', 'N2LV8OLP5MM', 'TBZTEOA0E2',
@@ -110,6 +120,7 @@ class QNDK():
             'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36 Edg/85.0.564.68'
         }
 
+
     def isclockin(self):
         if not self.USRID:
             raise Exception("未登录")
@@ -119,10 +130,9 @@ class QNDK():
             'usertype': 1,
             'yxdm': self.YXDM
         }
-        r = requests.get('https://yqfkapi.zhxy.net/api/ClockIn/IsClockIn',
-                         params=params, headers=self.getheader()).json()
-        return r['data']['isclockin']
-
+        _url = 'https://yqfkapi.zhxy.net/api/ClockIn/IsClockIn'
+        return self.sendget(_url, params)['isclockin']
+        
     def getverifycode(self):
         time.sleep(2)
         code, key = None, None
@@ -214,15 +224,16 @@ class QNDK():
     def DK_action(self):
         if self.isclockin():
             return True
+
         count = 0
         while count < 25:
             count += 1
 
             code, key, img = self.getverifycode()
-            self.json1 = {
+            _json = {
                 "UID": self.USRID,
                 "UserType": 1,
-                "JWD": "30.664565,104.096446",
+                "JWD": "30.664565,104.096446", # 成都市经纬度
                 "key": key,
                 "code": code,
                 "ZZDKID": 37,
@@ -237,7 +248,7 @@ class QNDK():
             }
             time.sleep(2)
             r = requests.post(
-                'https://yqfkapi.zhxy.net/api/ClockIn/Save', headers=self.getheader(), json=self.json1).json()
+                'https://yqfkapi.zhxy.net/api/ClockIn/Save', headers=self.getheader(), json=_json).json()
             if r['code'] == 200:
                 return True
             if r['code'] == 400:

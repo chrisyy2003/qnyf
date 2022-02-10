@@ -2,7 +2,11 @@
 
 ![image-20220209164528035](./README..assets/image-20220209164528035.png)
 
-按照字段依次填入信息到studata.db最后运行`python3 main.py`即可，此外`daka`字段是判断是否打卡的判断依据
+基于解析青柠的`api`，青柠接口写在`qnyflib`中
+
+按照字段依次填入信息到studata.db最后运行`python3 main.py`即可，此外`daka`字段是判断是否打卡的判断依据，填入非零则会打卡
+
+代码很简单，稍微阅读即可
 
 包含：
 

@@ -44,12 +44,12 @@ def get_version(yxdm):
 
 
 class QNDK():
-    YXDM = None
-    USRID = None
-    USRNAME = None
-    USRXH = None
-    USRPSW = None
-    USRLOC = None
+    YXDM = None //学校代码
+    USRID = None //用户id
+    USRNAME = None //姓名
+    USRXH = None //学号
+    USRPSW = None //密码
+    USRLOC = None //打卡位置
 
     ZCTW = None
     ZCTJSJ = None

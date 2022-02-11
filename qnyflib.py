@@ -295,7 +295,7 @@ class QNDK():
                 self.flag = False  # 用于判断是否继续填写温度
         return self.flag
 
-    def Tem_action(self):
+    def Tem(self):
         if not self.check():
             return True
         for i in range(2):

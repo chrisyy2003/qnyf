@@ -17,7 +17,7 @@ for row in res:
         try:
             # 10623 is your school code
             stu = QNDK(10623, num, name, passwd, loc)
-            if stu.DK_action():
+            if stu.Daka():
                 count += 1
                 print(name, '打卡成功')
         except Exception as e:

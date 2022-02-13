@@ -18,7 +18,12 @@ for row in studata:
     try:
         # 10623 is your school code
         stu = QNDK(10623, num, name, passwd, loc)
-        if stu.Daka():
+        res = stu.Daka()
+        if res == 1:
             print(name, '打卡成功')
+        elif res == 2:
+            print(name, '已经打卡')
+        else:
+            print(name, '打卡失败')
     except Exception as e:
         print(name, e)

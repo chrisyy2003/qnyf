@@ -165,12 +165,12 @@ class QNDK():
 
         #判断是否已经打卡
         if self.isclockin():
-            return True
+            return 2
 
         count = 0
         while count < 25:
             count += 1
-            code, key = self.getverifycode()
+            code, key, img = self.getverifycode()
 
             _json = {
                 "UID": self.USRID,
@@ -192,7 +192,7 @@ class QNDK():
             r = requests.post(
                 'https://yqfkapi.zhxy.net/api/ClockIn/Save', headers=self.getheader(), json=_json).json()
             if r['code'] == 200:
-                return True
+                return 1
             if r['code'] == 400:
                 continue
         return False

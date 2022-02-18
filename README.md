@@ -19,4 +19,4 @@
 hints: 
 
 1. YXDM字段是学校代码，在本学校网址可以看见
-2. 需要百度[ocr](https://cloud.baidu.com/doc/OCR/s/1k3h7y3db)来自动识别验证码，可以免费申请且有免费额度
+2. 需要百度[ocr](https://cloud.baidu.com/doc/OCR/s/1k3h7y3db)来自动识别验证码，可以免费申请且有免费额度，申请后[修改](https://github.com/chrisyang2003/qnyf/blob/master/qnyflib.py#L17)为自己的即可

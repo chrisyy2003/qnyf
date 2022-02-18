@@ -16,7 +16,7 @@
 2. 每日打卡
 2. 在不审批的情况下获得通行凭证
 
-tips: 
+hints: 
 
 1. YXDM字段是学校代码，在本学校网址可以看见
 2. 需要百度[ocr](https://cloud.baidu.com/doc/OCR/s/1k3h7y3db)来自动识别验证码，可以免费申请且有免费额度

@@ -222,8 +222,6 @@ class QNDK():
     def GetPassCard(self):
         '''
         通过提交的申请获取通行凭证
-
-        tips: 不需要是否申请通过
         '''
         _url = f'https://yqfkapi.zhxy.net/api/Access/GetPassCard?yxdm={self.YXDM}&UID={self.USRID}&usertype=1'        
         r = self.sendget(_url)
@@ -248,6 +246,8 @@ class QNDK():
     def GetOncePassCard(self):
         '''
         获得一次性出入凭证, 并删除提交的申请
+
+        hints: 不需要是否申请通过
         '''
         # 首先判断是否存在审批通过的凭证
         key = self.GetPassCard()

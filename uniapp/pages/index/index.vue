@@ -9,7 +9,11 @@
 			<u-divider></u-divider>
 			<u-text :text="'⭐目前已有' + count + '位同学正在自动打卡！'" color="#826a9a"></u-text>
 			<u-text text="🤡如果发现没有打卡成功，请检查自己的打卡状态" color="#826a9a"></u-text>
-			<u-text text="☔此qq可以审批出入申请，请咨询:3534328609" color="#826a9a"></u-text>
+			<u-text text="☔此qq可以审批出入申请，请咨询" color="#826a9a"></u-text>
+			<u-link href="https://tool.gljlw.com/qqq/?qq=3534328609" text="QQ:3534328609" :under-line="true"></u-link>
+			<u-text text="✔此项目开源，仓库地址：" color="#826a9a"></u-text>
+			<u-link href="https://github.com/chrisyang2003/qnyf" text="chrisyang2003/qnyf" :under-line="true"></u-link>
+			
 		</uni-card>
 		<u--form labelPosition="left" :model="form" style="padding-left: 30rpx; padding-right: 30rpx;">
 			<u-form-item label="学校" prop="userInfo.name">
@@ -32,7 +36,7 @@
 			</u-form-item>
 
 			<u-form-item label="位置">
-				<u-button @click="chooseLocation">{{hasLocation? form.address : '点击选择地址'}}</u-button>
+				<u-button @click="chooseLocation">{{hasLocation? form.address : '点击选择打卡地址'}}</u-button>
 			</u-form-item>
 		</u--form>
 

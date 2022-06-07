@@ -76,6 +76,9 @@
                     "key" : "I26BZ-LX6Y4-DP5U2-DDWUT-3VOY5-R4B65"
                 }
             }
+        },
+        "devServer" : {
+            "https" : false
         }
     }
 }

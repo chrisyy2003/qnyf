@@ -11,7 +11,7 @@
 			<u-text text="🤡如果发现没有打卡成功，请检查自己的打卡状态" color="#826a9a"></u-text>
 			<u-text text="☔此qq可以审批出入申请，请咨询" color="#826a9a"></u-text>
 			<u-link href="https://tool.gljlw.com/qqq/?qq=3534328609" text="QQ:3534328609" :under-line="true"></u-link>
-			<u-text text="✔此项目开源，仓库地址：" color="#826a9a"></u-text>
+			<u-text text="✔此项目免费开源，仓库地址：" color="#826a9a"></u-text>
 			<u-link href="https://github.com/chrisyang2003/qnyf" text="chrisyang2003/qnyf" :under-line="true"></u-link>
 			
 		</uni-card>

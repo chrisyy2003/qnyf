@@ -3,7 +3,6 @@ from lib.qnyflib import qnyf
 from flask_cors import *
 from lib.model import *
 
-
 app = Flask(__name__)
 CORS(app, supports_credentials=True)
 

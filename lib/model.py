@@ -1,21 +1,7 @@
 import peewee
 from peewee import IntegerField, TextField
 
-db = peewee.SqliteDatabase('data.db')
-
-
-class Stu(peewee.Model):
-    uid = IntegerField()
-    name = TextField()
-    number = TextField()
-    info = TextField()
-    sex = TextField()
-    passwd = TextField()
-
-    class Meta:
-        database = db
-        db_table = 'student'
-
+db = peewee.SqliteDatabase('./data/data.db')
 
 class daka(peewee.Model):
     yxdm = IntegerField()
@@ -27,7 +13,3 @@ class daka(peewee.Model):
     class Meta:
         database = db
         db_table = 'daka'
-
-
-if __name__ == "__main__":
-    pass

@@ -11,8 +11,8 @@
 			<u-text text="🤡如果发现没有打卡成功，请检查自己的打卡状态" color="#826a9a"></u-text>
 			<u-text text="☔此qq可以审批出入申请，请咨询" color="#826a9a"></u-text>
 			<u-link href="https://tool.gljlw.com/qqq/?qq=3534328609" text="QQ:3534328609" :under-line="true"></u-link>
-			<u-text text="✔此项目免费开源，仓库地址：" color="#826a9a"></u-text>
-			<u-link href="https://github.com/chrisyang2003/qnyf" text="chrisyang2003/qnyf" :under-line="true"></u-link>
+			<u-text text="✔此打卡程序免费开源，仓库地址：" color="#826a9a"></u-text>
+			<u-link href="https://github.com/chrisyy2003/qnyf" text="chrisyy2003/qnyf" :under-line="true"></u-link>
 			
 		</uni-card>
 		<u--form labelPosition="left" :model="form" style="padding-left: 30rpx; padding-right: 30rpx;">
@@ -70,13 +70,14 @@
 				hasLocation: false,
 				show: false,
 				columns: [
-					[{
-							name: '西华大学',
-							value: '10623'
-						},
+					[
 						{
 							name: '成都银杏酒店管理学院',
 							value: '13670'
+						},
+						{
+							name: '西华大学',
+							value: '10623'
 						}
 					]
 				],
@@ -96,9 +97,19 @@
 		},
 		methods: {
 			chooseLocation() {
-
+				// uni.getLocation({
+				// 	type: 'wgs84',
+				// 	success: function (res) {
+				// 		console.log('当前位置的经度：' + res.longitude);
+				// 		console.log('当前位置的纬度：' + res.latitude);
+				// 	}
+				// });
+				
 				
 				uni.chooseLocation({
+					
+					latitude: 30.65771,
+					longitude: 104.06596,
 					success: (res) => {
 						this.hasLocation = true
 						this.form.address = res.address

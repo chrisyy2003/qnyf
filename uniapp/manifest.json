@@ -72,8 +72,10 @@
     "h5" : {
         "sdkConfigs" : {
             "maps" : {
-                "qqmap" : {
-                    "key" : "I26BZ-LX6Y4-DP5U2-DDWUT-3VOY5-R4B65"
+                "amap" : {
+                    "key" : "2b7a3d497ed9c60c60c23c4188d2de97",
+                    "securityJsCode" : "04497efd29be91b3bd4e87be09b415be",
+                    "serviceHost" : ""
                 }
             }
         },

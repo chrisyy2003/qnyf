@@ -1,5 +1,0 @@
-flask
-peewee
-tqdm
-requests
-schedule

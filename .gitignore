@@ -1,0 +1,5 @@
+**/unpackage/**
+**/__pycache__/**
+**.log
+data/data.db
+uniapp/uni_modules/**

@@ -1,6 +1,8 @@
 from flask import Flask, request, make_response
+import datetime
 from lib.qnyflib import qnyf
-from lib.model import *
+from lib.model import daka
+from apscheduler.schedulers.background import BackgroundScheduler
 
 app = Flask(__name__)
 
@@ -113,6 +115,29 @@ def add():
         print(args, e)
         return resp(500)
 
+def daily_job():
+    format_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    print(f'[+] Daily_job at {format_time} start...')
+
+    for row in daka.select()[::-1]:
+        try:
+            stu = qnyf(row.yxdm, row.name, row.number, row.passwd, row.loc)
+            res = stu.do_daka()
+
+            if res == 1:
+                print(row.name, '打卡成功', )
+            elif res == 2:
+                print(row.name, '打卡失败', )
+            elif res == 3:
+                print(row.name, '已经打卡')
+
+        except Exception as e:
+            print(row.name, e)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True, port=4000, use_reloader=True)
+    # 每日打卡任务定时器
+    sched = BackgroundScheduler()
+    sched.add_job(daily_job, 'corn', hour=0, minute=0)
+    sched.start()
+
+    app.run(host='0.0.0.0', debug=False, port=4000, use_reloader=False)

@@ -137,7 +137,7 @@ def daily_job():
 if __name__ == "__main__":
     # 每日打卡任务定时器
     sched = BackgroundScheduler()
-    sched.add_job(daily_job, 'corn', hour=0, minute=0)
+    sched.add_job(daily_job, 'cron', hour=0, minute=0)
     sched.start()
 
     app.run(host='0.0.0.0', debug=False, port=4000, use_reloader=False)

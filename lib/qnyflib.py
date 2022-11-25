@@ -122,7 +122,6 @@ class qnyf():
             try:
                 code = recognize_img(img)
             except Exception as e:
-                print(f'识别验证码发生错误: {e}')
                 code = None
         return code, key, img
 

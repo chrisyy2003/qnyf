@@ -12,7 +12,7 @@
 需要说明的是: 
 
 1. YXDM字段是学校代码，在本学校网址可以看见
-2. 需要百度[ocr](https://cloud.baidu.com/doc/OCR/s/1k3h7y3db)来自动识别验证码，可以免费申请且有免费额度，申请后修改为自己的即可
+2. 需要百度[ocr](https://cloud.baidu.com/doc/OCR/s/1k3h7y3db)来自动识别验证码，可以免费申请且有免费额度，申请后在环境变量中修改，或者直接在`lib/orc.py`指定自己的参数即可
 
 ## 界面
 

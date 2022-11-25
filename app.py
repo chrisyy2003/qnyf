@@ -3,7 +3,10 @@ import datetime
 from lib.qnyflib import qnyf
 from lib.model import daka
 from apscheduler.schedulers.background import BackgroundScheduler
+from loguru import logger
 
+logger.add('app.log', format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}")
+logger.info('app start...')
 app = Flask(__name__)
 
 def check(yxdm, name, number, passwd, loc):
@@ -11,7 +14,7 @@ def check(yxdm, name, number, passwd, loc):
         stu = qnyf(yxdm, name, number, passwd, loc)
         return True
     except Exception as e:
-        print(f'[+] check : {e}')
+        logger.error(e)
         return False
 
 
@@ -25,7 +28,7 @@ def resp(code=200, msg="", data=""):
     }, 200)
 
 
-@app.route('/hello', methods=["GET"])
+@app.route('/api/hello', methods=["GET"])
 def hello():
     return make_response({
         "code": 200,
@@ -57,7 +60,8 @@ def query():
         return resp(200, f'用户: {user.name} \n\n 打卡状态: 正常 \n\n 打卡位置: {user.loc}')
 
     except Exception as e:
-        print(args, e)
+        logger.error(f"{args} - {e}")
+
         return resp(500)
 
 
@@ -73,7 +77,7 @@ def stophan():
         daka.delete().where(number == daka.number).execute()
         return resp(200, "删除成功")
     except Exception as e:
-        print(args, e)
+        logger.error(f"{args} - {e}")
         return resp(500)
 
 
@@ -112,12 +116,11 @@ def add():
             return resp(200, "添加成功")
 
     except Exception as e:
-        print(args, e)
+        logger.error(f"{args} - {e}")
         return resp(500)
 
 def daily_job():
-    format_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    print(f'[+] Daily_job at {format_time} start...')
+    logger.info('Daily_job start...')
 
     for row in daka.select()[::-1]:
         try:
@@ -125,14 +128,14 @@ def daily_job():
             res = stu.do_daka()
 
             if res == 1:
-                print(row.name, '打卡成功', )
+                logger.info(f"{row.name} - 打卡成功")
             elif res == 2:
-                print(row.name, '打卡失败', )
+                logger.info(f"{row.name} - 打卡失败")
             elif res == 3:
-                print(row.name, '已经打卡')
+                logger.info(f"{row.name} - 已经打卡")
 
         except Exception as e:
-            print(row.name, e)
+            logger.error(f"{row.name} - {e}")
 
 if __name__ == "__main__":
     # 每日打卡任务定时器

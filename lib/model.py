@@ -13,3 +13,6 @@ class daka(peewee.Model):
     class Meta:
         database = db
         db_table = 'daka'
+
+db.connect()
+db.create_tables([daka])

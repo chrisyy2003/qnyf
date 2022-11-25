@@ -2,6 +2,12 @@ import requests
 import string
 import os
 
+
+cliend_id = os.getenv('baidu_orc_id')
+client_secret = os.getenv('baidu_orc_secret')
+if cliend_id == None or client_secret == None:
+    raise Exception("没有配置orc")
+
 def get_access_token():
     # fake client id
     host = 'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=TUql6XvVAFreu6PQxjpWCHrs&client_secret=yGuiZdloTWszzXIFw7Un9co9kj7Z8mWR'
@@ -9,10 +15,14 @@ def get_access_token():
     # get from env
     cliend_id = os.getenv('baidu_orc_id')
     client_secret = os.getenv('baidu_orc_secret')
-    host = f'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id={cliend_id}&client_secret={client_secret}'
 
-    token = requests.get(host).json()['access_token']
-    return token
+    host = f'https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id={cliend_id}&client_secret={client_secret}'
+    res = requests.get(host).json()
+    if 'access_token' in res:
+        return res['access_token']
+    else:
+        raise Exception("orc access_token 无效")
+
 
 
 def recognize_img(img):
@@ -33,7 +43,7 @@ def recognize_img(img):
                         string.digits else '' for i in code])
         return code
     else:
-        raise ValueError("验证码识别错误")
+        raise Exception("验证码识别错误")
 
 
 if __name__ == "__main__":

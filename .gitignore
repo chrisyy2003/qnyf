@@ -2,3 +2,5 @@
 **/__pycache__/**
 **.log
 uniapp/uni_modules/**
+.DS_Store
+data/data.db

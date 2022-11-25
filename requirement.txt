@@ -3,4 +3,4 @@ peewee
 requests
 schedule
 apscheduler
-logger
+loguru
